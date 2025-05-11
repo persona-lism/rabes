@@ -106,44 +106,140 @@ jumlah_b1.addEventListener('change', function() {
 
 
 // Form
+// const form = document.getElementById('submit-form');
+// const script = 'https://script.google.com/macros/s/AKfycbwmc5IxN8qVCCJcVq55gICFWFcHWz0Ms6hGUhH-upluG0vxMBkrAz58gyJYfDRnHYXb/exec';
+
+// form.addEventListener('submit', e => {
+//     e.preventDefault();
+
+//     const fileInput = document.getElementById('buktitransfer');
+//     const file = fileInput.files[0];
+
+//     if (!file) {
+//         alert('Tidak ada bukti pembayaran!');
+//         return;
+//     }
+
+//     const reader = new FileReader();
+//     reader.onload = function () {
+//         const base64File = reader.result.split(',')[1];
+//         const formData = {
+//             name: form.namaPemesan.value,
+//             a1: form.jumlaha1.value,
+//             a2: form.jumlaha2.value,
+//             a3: form.jumlaha3.value,
+//             b1: form.jumlahb1.value,
+//             total: document.getElementById('total-harga').textContent,
+//             // trans: document.getElementById('buktitransfer').value
+//             fileName: file.name,
+//             mimeType: file.type,
+//             fileData: base64File
+//         };
+
+//         fetch(script, {
+//             method: 'POST',
+//             body: JSON.stringify(formData),
+//             headers: { 'Content-Type' : 'application/json' },
+//             mode: 'no-cors'
+//         })
+//         .then(() => alert('Form submitted successfully!'))
+//         .catch(error => alert('Error: ' + error.message));
+//     };
+//     reader.readAsDataURL(file);
+// });
+
 const form = document.getElementById('submit-form');
-const script = 'https://script.google.com/macros/s/AKfycbwmc5IxN8qVCCJcVq55gICFWFcHWz0Ms6hGUhH-upluG0vxMBkrAz58gyJYfDRnHYXb/exec';
+const scriptUrl = 'https://script.google.com/macros/s/AKfycbz2M-3rcLOso4ZMaXUQ7QOoanw2iH_ggsKrtCxk17vFDrglh9fd12Jq4RHbRqMcK12lvw/exec';
+
+// Function to generate a simple security token based on timestamp and current URL
+function generateSecurityToken() {
+  const timestamp = new Date().getTime();
+  const currentOrigin = window.location.origin + window.location.pathname;
+  
+  // Return security information
+  return {
+    timestamp: timestamp,
+    origin: currentOrigin
+  };
+}
 
 form.addEventListener('submit', e => {
     e.preventDefault();
+    
+    // Show loading indicator
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Mengirim...';
 
     const fileInput = document.getElementById('buktitransfer');
     const file = fileInput.files[0];
 
     if (!file) {
         alert('Tidak ada bukti pembayaran!');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
         return;
     }
+
+    // Generate security token
+    const securityInfo = generateSecurityToken();
 
     const reader = new FileReader();
     reader.onload = function () {
         const base64File = reader.result.split(',')[1];
         const formData = {
+            // Form data
             name: form.namaPemesan.value,
             a1: form.jumlaha1.value,
             a2: form.jumlaha2.value,
             a3: form.jumlaha3.value,
             b1: form.jumlahb1.value,
             total: document.getElementById('total-harga').textContent,
-            // trans: document.getElementById('buktitransfer').value
+            
+            // File data
             fileName: file.name,
             mimeType: file.type,
-            fileData: base64File
+            fileData: base64File,
+            
+            // Security information
+            timestamp: securityInfo.timestamp,
+            referer: securityInfo.origin
         };
 
-        fetch(script, {
+        fetch(scriptUrl, {
             method: 'POST',
             body: JSON.stringify(formData),
-            headers: { 'Content-Type' : 'application/json' },
+            headers: { 'Content-Type': 'application/json' },
             mode: 'no-cors'
         })
-        .then(() => alert('Form submitted successfully!'))
-        .catch(error => alert('Error: ' + error.message));
+        .then(() => {
+            // Success handling
+            alert('Form berhasil dikirim! Terima kasih atas pesanan Anda.');
+            
+            // Optional: Reset form
+            form.reset();
+            document.getElementById('total-harga').textContent = '0';
+            
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        })
+        .catch(error => {
+            // Error handling
+            alert('Error: ' + (error.message || 'Terjadi kesalahan saat mengirim formulir'));
+            
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        });
     };
+    
+    reader.onerror = function() {
+        alert('Error membaca file. Silakan coba lagi.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalBtnText;
+    };
+    
     reader.readAsDataURL(file);
 });
