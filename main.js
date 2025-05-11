@@ -107,7 +107,7 @@ jumlah_b1.addEventListener('change', function() {
 
 // Form
 const form = document.getElementById('submit-form');
-const script = 'https://script.google.com/macros/s/AKfycbxjki97zimh-T_qzDgFJW6Tg3G-UkSozn45aSGBBIcqZalzTrWKgg0q6ywGWDjhPfp_jA/exec';
+const script = 'https://script.google.com/macros/s/AKfycbySMfIK8v-YktgztpOktW-NeihhRY8gFrMb8eT4AUloS47ZAaaTN1LVQ8csYcezuaMfhg/exec';
 
 form.addEventListener('submit', e => {
     e.preventDefault();
