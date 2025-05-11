@@ -167,11 +167,6 @@ form.addEventListener('submit', e => {
     e.preventDefault();
     
     // Show loading indicator
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalBtnText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Mengirim...';
-
     const fileInput = document.getElementById('buktitransfer');
     const file = fileInput.files[0];
 
