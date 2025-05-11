@@ -172,8 +172,6 @@ form.addEventListener('submit', e => {
 
     if (!file) {
         alert('Tidak ada bukti pembayaran!');
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
         return;
     }
 
@@ -216,24 +214,15 @@ form.addEventListener('submit', e => {
             form.reset();
             document.getElementById('total-harga').textContent = '0';
             
-            // Reset button
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
         })
         .catch(error => {
             // Error handling
             alert('Error: ' + (error.message || 'Terjadi kesalahan saat mengirim formulir'));
-            
-            // Reset button
-            submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
         });
     };
     
     reader.onerror = function() {
         alert('Error membaca file. Silakan coba lagi.');
-        submitBtn.disabled = false;
-        submitBtn.textContent = originalBtnText;
     };
     
     reader.readAsDataURL(file);
