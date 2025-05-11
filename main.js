@@ -139,7 +139,10 @@ form.addEventListener('submit', e => {
         fetch(script, {
             method: 'POST',
             body: JSON.stringify(formData),
-            headers: { 'Content-Type' : 'application/json' },
+            headers: { 
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer AKfycbwjnWL4vgtyEkr21tI9h0DoXu10BfvmMboNmw_e9VgLp0yDgN3a0z9O_oAg0kXxIrbJkg'
+            },
             mode: 'no-cors'
         })
         .then(() => alert('Form submitted successfully!'))
