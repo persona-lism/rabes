@@ -140,7 +140,7 @@ form.addEventListener('submit', e => {
             method: 'POST',
             body: JSON.stringify(formData),
             headers: { 'Content-Type' : 'application/json' },
-            // mode: 'no-cors'
+            mode: 'no-cors'
         })
         .then(() => alert('Form submitted successfully!'))
         .catch(error => alert('Error: ' + error.message));
