@@ -162,13 +162,17 @@ function generateSecurityToken() {
 
 form.addEventListener('submit', e => {
     e.preventDefault();
+    loader();
+
     const nama = form.namaPemesan.value;
     if (nama == null || nama == '') {
+        unloader();
         alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: Mohon untuk mencantumkan nama pemesan.');
         return;
     }
-
+    
     if (document.getElementById('total-harga').textContent === "Rp0,00") {
+        unloader();
         alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: Mohon untuk memesan setidaknya satu menu.');
         return;
     }
@@ -178,6 +182,7 @@ form.addEventListener('submit', e => {
     const file = fileInput.files[0];
     
     if (!file) {
+        unloader();
         alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: Mohon untuk mencantumkan bukti pembayaran.');
         return;
     }
@@ -214,6 +219,7 @@ form.addEventListener('submit', e => {
         })
         .then(() => {
             // Success handling
+            unloader();
             alert('BERHASIL UNTUK MELAKUKAN PEMESANAN!\nStatus Keberhasilan: Form berhasil dikirim, terima kasih atas pesanan anda!\nDitunggu pesanan berikutnya :)');
             
             // Optional: Reset form
@@ -222,16 +228,27 @@ form.addEventListener('submit', e => {
         })
         .catch(error => {
             // Error handling
+            unloader();
             alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: ' + (error.message || 'Terjadi kesalahan saat mengirim formulir'));
         });
     };
     
     reader.onerror = function() {
+        unloader();
         alert('Error membaca file. Silakan coba lagi.');
     };
     
     reader.readAsDataURL(file);
 });
+
+const v = document.getElementById('loading');
+function loader() {
+    v.style.display = 'flex';
+}
+
+function unloader() {
+    v.style.display = 'none';
+}
 
 function clearForm() {
     form.reset();
@@ -252,4 +269,23 @@ function clearForm() {
     document.getElementById('menub1').value = false;
     document.getElementById('jumlahb1').value = '';
     document.getElementById('jumlahb1').disabled = true;
+
+    // document.getElementById('total-harga').textContent = 'Rp0,00';
+    updatePrice();
 }
+
+jumlah_a1.addEventListener('input', function() {
+    updatePrice();
+});
+
+jumlah_a2.addEventListener('input', function() {
+    updatePrice();
+});
+
+jumlah_a3.addEventListener('input', function() {
+    updatePrice();
+});
+
+jumlah_b1.addEventListener('input', function() {
+    updatePrice();
+});

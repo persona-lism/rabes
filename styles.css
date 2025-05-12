@@ -10,7 +10,6 @@ html {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
-
 }
 
 body {
@@ -18,6 +17,7 @@ body {
     top: 0;
     left: 0;
     width: 100vw;
+    height: 100%;
     display: flex;
 
     overflow-y: auto;
@@ -240,6 +240,7 @@ input[type=number]::-webkit-outer-spin-button {
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 1rem;
+    cursor: pointer;
 }
 
 #submit {
@@ -261,6 +262,7 @@ input[type=number]::-webkit-outer-spin-button {
     border: 1px black solid;
     padding: 1rem;
     /* background-color: #fff5e1; */
+    cursor: pointer;
 }
 
 @media (max-width: 600px) {
@@ -302,5 +304,58 @@ input[type=number]::-webkit-outer-spin-button {
     .menu > #submit-form > .total > span,
     .menu > #submit-form > .bukti > span {
         font-size: 1rem;
+    }
+}
+
+#loading {
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.4);
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#loading > .spinner {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loading > .spinner::before,
+#loading > .spinner::after {
+    border: 6.7px solid #474bff;
+    border-radius: 50%;
+    position: absolute;
+    content: '';
+    display: block;
+}
+
+#loading > .spinner::before {
+    width: 33.6px;
+    height: 33.6px;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    animation: spinners 0.75s infinite linear reverse;
+}
+
+#loading > .spinner::after {
+    animation: spinners 0.5s infinite linear;
+    height: 56px;
+    width: 56px;
+    border-right-color: transparent;
+    border-top-color: transparent;
+}
+
+@keyframes spinners {
+    to {
+        transform: rotate(360deg);
     }
 }
