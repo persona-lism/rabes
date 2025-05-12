@@ -10,9 +10,11 @@ html {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+
 }
 
 body {
+    margin: 0;
     top: 0;
     left: 0;
     width: 100vw;
@@ -28,18 +30,47 @@ body {
 
 .order-here {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border: 1px transparent solid;
     /* border: 1px black solid; */
     flex: 1;
+    gap: 1.5rem;
 }
 
-.order-here > img {
+.order-here > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px black solid;
+    width: 75%;
+    padding: 1rem;
+    background-color: #f4d7aa;
+}
+
+.order-here > div:last-child {
+    padding-bottom: 2rem;
+}
+
+.order-here > div > span:first-child {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.order-here > span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    /* margin-bottom: 1.5rem; */
+}
+
+.order-here img {
     width: 20rem;
     height: 20rem;
     border: 1px transparent solid;
     padding: 0rem 4rem;
+    aspect-ratio: 1 / 1;
 }
 
 .menu {
@@ -52,6 +83,7 @@ body {
     flex: 1;
     height: 100%;
     padding: 5rem 0rem;
+    box-sizing: border-box;
 }
 
 .menu > #submit-form {
@@ -63,6 +95,7 @@ body {
     
     border-radius: 0.5rem;
     background: #fff5e1;
+    box-sizing: border-box;
 }
 
 #submit-form > .identitas {
@@ -82,10 +115,6 @@ body {
 #submit-form > .identitas > input {
     padding: 0.25rem;
     font-size: 1rem;
-}
-
-input {
-    /* border: 1px black solid; */
 }
 
 #submit-form > .makanan,
@@ -231,4 +260,47 @@ input[type=number]::-webkit-outer-spin-button {
 .bukti > input {
     border: 1px black solid;
     padding: 1rem;
+    /* background-color: #fff5e1; */
+}
+
+@media only screen and (max-width: 600px) {
+    .menu {
+        /* background-color: red; */
+        padding: 0;
+    }
+
+    .menu > #submit-form {
+        border-radius: 0;
+        width: 100%;
+    }
+
+    .order-here > div > span {
+        text-align: center;
+    }
+
+    .order-here > div > span:first-child {
+        font-size: 0.9rem;
+    }
+
+    .order-here img {
+        min-width: 8rem;
+        max-width: 12rem;
+        width: 100%;
+        height: auto;
+        /* width: 10rem; */
+        /* height: 10rem; */
+    }
+
+    * {
+        font-size: 0.9rem;
+    }
+
+    .menu > #submit-form > .identitas > label,
+    .menu > #submit-form > .makanan > span,
+    .menu > #submit-form > .minuman > span,
+    .menu > #submit-form > .order-here > span,
+    .menu > #submit-form > .total > span,
+    .menu > #submit-form > .bukti > span {
+        font-size: 1rem;
+    }
 }
