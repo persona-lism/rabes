@@ -1,0 +1,234 @@
+html {
+    scroll-behavior: smooth;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* font-size: 1.05rem; */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    display: flex;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #1DAEC4FF;
+    background: -webkit-linear-gradient(0deg, rgba(29, 174, 196, 1) 0%, rgba(53, 129, 196, 1) 50%, rgba(48, 126, 199, 1) 100%);
+    background: -moz-linear-gradient(0deg, rgba(29, 174, 196, 1) 0%, rgba(53, 129, 196, 1) 50%, rgba(48, 126, 199, 1) 100%);
+    background: linear-gradient(0deg, rgba(29, 174, 196, 1) 0%, rgba(53, 129, 196, 1) 50%, rgba(48, 126, 199, 1) 100%);
+}
+
+.order-here {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px transparent solid;
+    /* border: 1px black solid; */
+    flex: 1;
+}
+
+.order-here > img {
+    width: 20rem;
+    height: 20rem;
+    border: 1px transparent solid;
+    padding: 0rem 4rem;
+}
+
+.menu {
+    border: 1px transparent solid;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* width: 100%; */
+    flex: 1;
+    height: 100%;
+    padding: 5rem 0rem;
+}
+
+.menu > #submit-form {
+    border: 1px lightgray solid;
+    padding: 3rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    
+    border-radius: 0.5rem;
+    background: #fff5e1;
+}
+
+#submit-form > .identitas {
+    display: flex;
+    flex-direction: column;
+    /* background-color: gray; */
+    padding: 0.5rem;
+    border: 1px transparent solid;
+}
+
+#submit-form > .identitas > label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+#submit-form > .identitas > input {
+    padding: 0.25rem;
+    font-size: 1rem;
+}
+
+input {
+    /* border: 1px black solid; */
+}
+
+#submit-form > .makanan,
+#submit-form > .minuman {
+    display: flex;
+    flex-direction: column;
+
+    padding: 0.5rem;
+    border: 1px transparent solid;
+}
+
+#submit-form > .makanan > span,
+#submit-form > .minuman > span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+#submit-form > .makanan > .pilihan-makanan,
+#submit-form > .minuman > .pilihan-minuman {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+#submit-form > .makanan > .pilihan-makanan > .jenis,
+#submit-form > .minuman > .pilihan-minuman > .jenis {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+#submit-form > .makanan > .pilihan-makanan > .jenis > .divider,
+#submit-form > .minuman > .pilihan-minuman > .jenis > .divider {
+    display: flex;
+    gap: 1rem;
+}
+
+#submit-form > .makanan > .pilihan-makanan > .jenis > .divider:last-child,
+#submit-form > .minuman > .pilihan-minuman > .jenis > .divider:last-child {
+    font-weight: bold;
+    /* font-family: monospace; */
+}
+
+.divider > label {
+    cursor: pointer;
+    border: 1px transparent solid;
+    /* border: 1px black solid; */
+    align-self: center;
+    padding: 0.25rem 0rem;
+}
+
+.divider > input {
+    cursor: pointer;
+    width: 1.5rem;
+    height: 1.5rem;
+    align-self: center;
+    justify-self: center;
+    border: 1px black solid;
+}
+
+
+.jumlah {
+    margin-top: 0.5rem;
+    display: flex;
+    border: 1px transparent solid;
+}
+
+.jumlah > img {
+    width: 1.5rem;
+    height: 1.5rem;
+    align-self: center;
+    justify-self: center;
+    border: 1px transparent solid;
+    transform: scaleY(-1);
+}
+
+.jumlah > input {
+    width: 3rem;
+    height: 1.5rem;
+    font-size: 1rem;
+}
+
+.jumlah > label {
+    cursor: pointer;
+    border: 1px transparent solid;
+    align-self: center;
+    padding: 0rem 1rem 0rem 0rem;
+    margin-left: 1rem;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+}
+
+
+#submit-form > .total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+#submit-form > .total > span {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+#submit-form > .bukti {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+#submit-form > .bukti > label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+#submit {
+    cursor: pointer;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: #f4d7aa;
+    transition: .4s ease;
+    border: 2px black solid;
+}
+
+#submit:hover {
+    background-color: #e08f5d;
+    color: white;
+}
+
+.bukti > input {
+    border: 1px black solid;
+    padding: 1rem;
+}

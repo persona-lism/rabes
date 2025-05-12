@@ -104,10 +104,9 @@ jumlah_b1.addEventListener('change', function() {
     updatePrice();
 });
 
-
 // Form
 // const form = document.getElementById('submit-form');
-// const script = 'https://script.google.com/macros/s/AKfycbwmc5IxN8qVCCJcVq55gICFWFcHWz0Ms6hGUhH-upluG0vxMBkrAz58gyJYfDRnHYXb/exec';
+// const script = '';
 
 // form.addEventListener('submit', e => {
 //     e.preventDefault();
@@ -151,12 +150,10 @@ jumlah_b1.addEventListener('change', function() {
 const form = document.getElementById('submit-form');
 const scriptUrl = 'https://script.google.com/macros/s/AKfycbz2M-3rcLOso4ZMaXUQ7QOoanw2iH_ggsKrtCxk17vFDrglh9fd12Jq4RHbRqMcK12lvw/exec';
 
-// Function to generate a simple security token based on timestamp and current URL
 function generateSecurityToken() {
   const timestamp = new Date().getTime();
   const currentOrigin = window.location.origin + window.location.pathname;
-  
-  // Return security information
+
   return {
     timestamp: timestamp,
     origin: currentOrigin
@@ -165,20 +162,29 @@ function generateSecurityToken() {
 
 form.addEventListener('submit', e => {
     e.preventDefault();
-    
-    // Show loading indicator
-    const fileInput = document.getElementById('buktitransfer');
-    const file = fileInput.files[0];
-
-    if (!file) {
-        alert('Tidak ada bukti pembayaran!');
+    const nama = form.namaPemesan.value;
+    if (nama == null || nama == '') {
+        alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: Mohon untuk mencantumkan nama pemesan.');
         return;
     }
 
-    // Generate security token
-    const securityInfo = generateSecurityToken();
+    if (document.getElementById('total-harga').textContent === "Rp0,00") {
+        alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: Mohon untuk memesan setidaknya satu menu.');
+        return;
+    }
 
+    // Show loading indicator
+    const fileInput = document.getElementById('buktitransfer');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: Mohon untuk mencantumkan bukti pembayaran.');
+        return;
+    }
+    
+    const securityInfo = generateSecurityToken();
     const reader = new FileReader();
+
     reader.onload = function () {
         const base64File = reader.result.split(',')[1];
         const formData = {
@@ -199,7 +205,7 @@ form.addEventListener('submit', e => {
             timestamp: securityInfo.timestamp,
             referer: securityInfo.origin
         };
-
+        clearForm();
         fetch(scriptUrl, {
             method: 'POST',
             body: JSON.stringify(formData),
@@ -208,16 +214,15 @@ form.addEventListener('submit', e => {
         })
         .then(() => {
             // Success handling
-            alert('Form berhasil dikirim! Terima kasih atas pesanan Anda.');
+            alert('BERHASIL UNTUK MELAKUKAN PEMESANAN!\nStatus Keberhasilan: Form berhasil dikirim, terima kasih atas pesanan anda!\nDitunggu pesanan berikutnya :)');
             
             // Optional: Reset form
-            form.reset();
-            document.getElementById('total-harga').textContent = '0';
-            
+            // form.reset();
+            // document.getElementById('total-harga').textContent = 'Rp0,00';
         })
         .catch(error => {
             // Error handling
-            alert('Error: ' + (error.message || 'Terjadi kesalahan saat mengirim formulir'));
+            alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: ' + (error.message || 'Terjadi kesalahan saat mengirim formulir'));
         });
     };
     
@@ -227,3 +232,24 @@ form.addEventListener('submit', e => {
     
     reader.readAsDataURL(file);
 });
+
+function clearForm() {
+    form.reset();
+    document.getElementById('namaPemesan').value = '';
+
+    document.getElementById('menua1').value = false;
+    document.getElementById('jumlaha1').value = '';
+    document.getElementById('jumlaha1').disabled = true;
+
+    document.getElementById('menua2').value = false;
+    document.getElementById('jumlaha2').value = '';
+    document.getElementById('jumlaha2').disabled = true;
+
+    document.getElementById('menua3').value = false;
+    document.getElementById('jumlaha3').value = '';
+    document.getElementById('jumlaha3').disabled = true;
+
+    document.getElementById('menub1').value = false;
+    document.getElementById('jumlahb1').value = '';
+    document.getElementById('jumlahb1').disabled = true;
+}

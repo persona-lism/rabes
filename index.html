@@ -11,7 +11,7 @@
             <form id="submit-form">
                 <div class="identitas">
                     <label for="namaPemesan">Nama pemesan</label>
-                    <input type="text" id="namaPemesan" name="namaPemesan" required aria-required="true">
+                    <input type="text" id="namaPemesan" name="namaPemesan" autocomplete="off" autocapitalize="off" aria-autocomplete="off">
                 </div>
                 
                 <div class="makanan">
@@ -19,36 +19,51 @@
                     <!-- <input type="text" id="menu-makanan" name="menu-makanan" required aria-required="true"> -->
                     <div class="pilihan-makanan">
                         <div class="jenis">
-                            <input type="checkbox" id="menua1" name="menua1" value="menua1">
-                            <label for="menua1">Paket ayam geprek dan nasi</label>
-                            <label for="menua1">(Rp13.000,00)</label>
+                            <div class="divider">
+                                <input type="checkbox" id="menua1" name="menua1" value="menua1">
+                                <label for="menua1">Paket ayam geprek dan nasi</label>
+                            </div>
+                            <div class="divider">
+                                <label for="menua1">(Rp13.000,00)</label>
+                            </div>
                         </div>
 
                         <div class="jumlah">
+                            <img src="assets/send.png">
                             <label for="jumlaha1">Jumlah:</label>
-                            <input type="number" id="jumlaha1" name="jumlaha1" min="1" max="100" step="1" disabled>
+                            <input type="number" id="jumlaha1" name="jumlaha1" min="1" max="100" disabled>
                         </div>
                     </div>
                     <div class="pilihan-makanan">
                         <div class="jenis">
-                            <input type="checkbox" id="menua2" name="menua2" value="menua2">
-                            <label for="menua2">Paket ayam bakar dan nasi</label>
-                            <label for="menua2">(Rp13.000,00)</label>
+                            <div class="divider">
+                                <input type="checkbox" id="menua2" name="menua2" value="menua2">
+                                <label for="menua2">Paket ayam bakar dan nasi</label>
+                            </div>
+                            <div class="divider">
+                                <label for="menua2">(Rp13.000,00)</label>
+                            </div>
                         </div>
 
                         <div class="jumlah">
+                            <img src="assets/send.png">
                             <label for="jumlaha2">Jumlah:</label>
                             <input type="number" id="jumlaha2" name="jumlaha2" min="1" max="100" step="1" disabled>
                         </div>
                     </div>
                     <div class="pilihan-makanan">
                         <div class="jenis">
-                            <input type="checkbox" id="menua3" name="menua3" value="menua3">
-                            <label for="menua3">Nasi goreng ayam suwir</label>
-                            <label for="menua3">(Rp13.000,00)</label>
+                            <div class="divider">
+                                <input type="checkbox" id="menua3" name="menua3" value="menua3">
+                                <label for="menua3">Nasi goreng ayam suwir</label>
+                            </div>
+                            <div class="divider">
+                                <label for="menua3">(Rp13.000,00)</label>
+                            </div>
                         </div>
 
                         <div class="jumlah">
+                            <img src="assets/send.png">
                             <label for="jumlaha3">Jumlah:</label>
                             <input type="number" id="jumlaha3" name="jumlaha3" min="1" max="100" step="1" disabled>
                         </div>
@@ -60,29 +75,38 @@
                     <!-- <input type="text" id="menu-minuman" name="menu-minuman" required aria-required="true"> -->
                     <div class="pilihan-minuman">
                         <div class="jenis">
-                            <input type="checkbox" id="menub1" name="menub1" value="menub1">
-                            <label for="menub1">Es Teh Manis</label>
-                            <label for="menub1">(Rp4.000,00)</label>
+                            <div class="divider">
+                                <input type="checkbox" id="menub1" name="menub1" value="menub1">
+                                <label for="menub1">Es teh manis</label>
+                            </div>
+                            <div class="divider">
+                                <label for="menub1">(Rp4.000,00)</label>
+                            </div>
                         </div>
 
                         <div class="jumlah">
+                            <img src="assets/send.png">
                             <label for="jumlahb1">Jumlah:</label>
                             <input type="number" id="jumlahb1" name="jumlahb1" min="1" max="100" step="1" disabled>
                         </div>
                     </div>
                 </div>
 
+                <div class="order-here">
+            <img src="assets/order-here.png">
+        </div>
+
                 <div class="total">
-                    <h4>Total harga: </h4>
+                    <span>Total harga</span>
                     <div id="total-harga">Rp0,00</div>
                 </div>
 
                 <div class="bukti">
-                    <label for="buktitransfer">Bukti transfer</label>
-                    <input type="file" id="buktitransfer" accept="image/jpeg,image/png,image/jpg" required aria-required="true">
+                    <label for="buktitransfer">Bukti pembayaran</label>
+                    <input type="file" id="buktitransfer" accept="image/jpeg,image/png,image/jpg">
                 </div>
 
-                <input type="submit" value="Kirim">
+                <input type="submit" value="Kirim" id="submit">
             </form>
         </div>
     </body>
