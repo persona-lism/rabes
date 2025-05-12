@@ -263,7 +263,7 @@ input[type=number]::-webkit-outer-spin-button {
     /* background-color: #fff5e1; */
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 600px) {
     .menu {
         /* background-color: red; */
         padding: 0;
