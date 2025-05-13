@@ -360,3 +360,22 @@ input[type=number]::-webkit-outer-spin-button {
         transform: rotate(360deg);
     }
 }
+
+.warning {
+    z-index: 9;
+    position: fixed;
+    height: 2rem;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.warning > marquee {
+    width: 100vw;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}

@@ -167,13 +167,13 @@ form.addEventListener('submit', e => {
     const nama = form.namaPemesan.value;
     if (nama == null || nama == '') {
         unloader();
-        alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: Mohon untuk mencantumkan nama pemesan.');
+        alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\n\nStatus Kesalahan: Mohon untuk mencantumkan nama pemesan.');
         return;
     }
     
     if (document.getElementById('total-harga').textContent === "Rp0,00") {
         unloader();
-        alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: Mohon untuk memesan setidaknya satu menu.');
+        alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\n\nStatus Kesalahan: Mohon untuk memesan setidaknya satu menu.');
         return;
     }
 
@@ -229,7 +229,7 @@ form.addEventListener('submit', e => {
         .catch(error => {
             // Error handling
             unloader();
-            alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: ' + (error.message || 'Terjadi kesalahan saat mengirim formulir'));
+            alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\n\nStatus Kesalahan: ' + (error.message || 'Terjadi kesalahan saat mengirim formulir'));
         });
     };
     
