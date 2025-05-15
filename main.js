@@ -11,6 +11,9 @@ const produk_a3 = document.getElementById('menua3');
 const jumlah_a3 = document.getElementById('jumlaha3');
 const harga_a3 = 13000;
 
+const produk_a4 = document.getElementById('menua4');
+const jumlah_a4 = document.getElementById('jumlaha4');
+const harga_a4 = 10000;
 
 // Produk minuman:
 const produk_b1 = document.getElementById('menub1');
@@ -36,13 +39,15 @@ function updatePrice() {
     const a1 = document.getElementById('jumlaha1').value;
     const a2 = document.getElementById('jumlaha2').value;
     const a3 = document.getElementById('jumlaha3').value;
+    const a4 = document.getElementById('jumlaha4').value;
     const b1 = document.getElementById('jumlahb1').value;
 
     const a = (harga_a1 * a1);
     const b = (harga_a2 * a2);
     const c = (harga_a3 * a3);
-    const d = (harga_b1 * b1);
-    const totalPrice = a + b + c + d;
+    const d = (harga_a4 * a4);
+    const e = (harga_b1 * b1);
+    const totalPrice = a + b + c + d + e;
     // document.getElementById('total-harga').textContent = totalPrice;
     const rupiahConvert = (number) => {
         return 'Rp' + number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
@@ -88,6 +93,19 @@ produk_a3.addEventListener('change', function() {
 });
 
 jumlah_a3.addEventListener('change', function() {
+    updatePrice();
+});
+
+produk_a4.addEventListener('change', function() {
+    if (this.checked) {
+        toggleOn(jumlah_a4);
+    } else {
+        toggleOff(jumlah_a4);
+    }
+    updatePrice();
+});
+
+jumlah_a4.addEventListener('change', function() {
     updatePrice();
 });
 
@@ -148,7 +166,7 @@ jumlah_b1.addEventListener('change', function() {
 // });
 
 const form = document.getElementById('submit-form');
-const scriptUrl = 'https://script.google.com/macros/s/AKfycbz2M-3rcLOso4ZMaXUQ7QOoanw2iH_ggsKrtCxk17vFDrglh9fd12Jq4RHbRqMcK12lvw/exec';
+const scriptUrl = 'https://script.google.com/macros/s/AKfycbxRYZhtJBZNRLraIrwJJkZlD18QhPxbPB5VmNJaiewcETVV135vgTWqcYQ-rAam7g3KjQ/exec';
 
 function generateSecurityToken() {
   const timestamp = new Date().getTime();
@@ -198,6 +216,7 @@ form.addEventListener('submit', e => {
             a1: form.jumlaha1.value,
             a2: form.jumlaha2.value,
             a3: form.jumlaha3.value,
+            a4: form.jumlaha4.value,
             b1: form.jumlahb1.value,
             total: document.getElementById('total-harga').textContent,
             
@@ -266,6 +285,10 @@ function clearForm() {
     document.getElementById('jumlaha3').value = '';
     document.getElementById('jumlaha3').disabled = true;
 
+    document.getElementById('menua4').value = false;
+    document.getElementById('jumlaha4').value = '';
+    document.getElementById('jumlaha4').disabled = true;
+
     document.getElementById('menub1').value = false;
     document.getElementById('jumlahb1').value = '';
     document.getElementById('jumlahb1').disabled = true;
@@ -283,6 +306,10 @@ jumlah_a2.addEventListener('input', function() {
 });
 
 jumlah_a3.addEventListener('input', function() {
+    updatePrice();
+});
+
+jumlah_a4.addEventListener('input', function() {
     updatePrice();
 });
 
