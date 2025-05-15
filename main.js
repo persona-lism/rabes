@@ -13,7 +13,7 @@ const harga_a3 = 13000;
 
 const produk_a4 = document.getElementById('menua4');
 const jumlah_a4 = document.getElementById('jumlaha4');
-const harga_a4 = 10000;
+const harga_a4 = 8000;
 
 // Produk minuman:
 const produk_b1 = document.getElementById('menub1');
