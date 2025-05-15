@@ -201,7 +201,7 @@ form.addEventListener('submit', e => {
     
     if (!file) {
         unloader();
-        alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\nStatus Kesalahan: Mohon untuk mencantumkan bukti pembayaran.');
+        alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\n\nStatus Kesalahan: Mohon untuk mencantumkan bukti pembayaran.');
         return;
     }
     
@@ -239,7 +239,7 @@ form.addEventListener('submit', e => {
         .then(() => {
             // Success handling
             unloader();
-            alert('BERHASIL UNTUK MELAKUKAN PEMESANAN!\nStatus Keberhasilan: Form berhasil dikirim, terima kasih atas pesanan anda!\nDitunggu pesanan berikutnya :)');
+            alert('BERHASIL UNTUK MELAKUKAN PEMESANAN!\n\nStatus Keberhasilan: Form berhasil dikirim, terima kasih atas pesanan anda!\nDitunggu pesanan berikutnya :)');
             
             // Optional: Reset form
             // form.reset();
@@ -248,7 +248,7 @@ form.addEventListener('submit', e => {
         .catch(error => {
             // Error handling
             unloader();
-            alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\n\nStatus Kesalahan: ' + (error.message || 'Terjadi kesalahan saat mengirim formulir'));
+            // alert('GAGAL UNTUK MELAKUKAN PEMESANAN!\n\nStatus Kesalahan: ' + (error.message || 'Terjadi kesalahan saat mengirim formulir'));
         });
     };
     
