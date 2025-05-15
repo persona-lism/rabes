@@ -50,6 +50,10 @@ body {
     background-color: #f4d7aa;
 }
 
+.order-here > .qris > img {
+    margin-bottom: 1rem;
+}
+
 .order-here > div:last-child {
     padding-bottom: 2rem;
 }
