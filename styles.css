@@ -74,7 +74,9 @@ body {
     height: 20rem;
     border: 1px transparent solid;
     padding: 0rem 4rem;
-    aspect-ratio: 1 / 1;
+    /* aspect-ratio: 1 / 1; */
+    display: block;
+    object-fit: cover;
 }
 
 .menu {
